@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import GlobalState from "./context/GlobalState";
+import { Switch, Route } from "react-router-dom";
+import CategoryLists from "./components/Steps/CategoryLists";
+import ProviderList from "./components/Steps/ProviderList";
+import Payment from "./components/Steps/Payment";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <GlobalState>
+      <div className="container h-100">
+        <div className="w-100 h-100 d-flex">
+          <div className="w-50 m-auto bg-white shadow rounded p-5">
+            <Switch>
+              <Route path="/" exact>
+                <CategoryLists />
+              </Route>
+              <Route path="/provider" exact>
+                <ProviderList />
+              </Route>
+              <Route path="/payment" exact>
+                <Payment />
+              </Route>
+            </Switch>
+          </div>
+        </div>
+      </div>
+    </GlobalState>
   );
-}
+};
 
 export default App;
